@@ -81,7 +81,9 @@ class SingleProduct extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.back();
+                          },
                           child: CustomButtom(
                             text: 'Oui',
                           ),

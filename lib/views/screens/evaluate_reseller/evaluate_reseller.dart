@@ -81,7 +81,9 @@ class EvaluateReseller extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(right: 10),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.back();
+                            },
                             child: CustomButtom(
                               text: 'Evaluer',
                             ),

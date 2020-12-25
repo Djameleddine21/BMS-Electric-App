@@ -1,3 +1,4 @@
+import 'package:bms_electric/constants.dart';
 import 'package:bms_electric/views/routes/routes.dart';
 import 'package:bms_electric/views/screens/auth/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +17,15 @@ class BMSApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "BMS Electric",
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        buttonColor: primaryColor,
+        appBarTheme: AppBarTheme(centerTitle: true, color: primaryColor),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: primaryColor,
+        ),
+        fontFamily: "Gotham",
+      ),
       defaultTransition: Transition.cupertino,
       getPages: pages,
       initialRoute: AuthPage.id,

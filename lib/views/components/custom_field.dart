@@ -2,9 +2,11 @@ import 'package:bms_electric/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomField extends StatelessWidget {
+  final Widget icon;
   final Widget textField;
 
-  const CustomField({@required this.textField}) : assert(textField != null);
+  const CustomField({@required this.textField, @required this.icon})
+      : assert(textField != null);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomField extends StatelessWidget {
               color: secondaryColor,
             ),
             alignment: Alignment(-0.96, 0.0),
-            child: Icon(Icons.person_outline, color: Colors.white, size: 30.0),
+            child: icon,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40.0),

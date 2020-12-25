@@ -9,6 +9,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="bms_electric"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA9hfayBm8-_d1yls7waNCYy19eI6VPfxg"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

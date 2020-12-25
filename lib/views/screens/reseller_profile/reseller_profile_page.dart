@@ -104,7 +104,9 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
             ),
             SizedBox(height: 20),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.back();
+              },
               child: CustomButtom(
                 text: 'Ajouter',
               ),

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../constants.dart';
 
 class EvaluateReseller extends StatelessWidget {
+  static const id = 'evaluateReseller';
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

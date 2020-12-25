@@ -1,7 +1,9 @@
-import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
-import 'package:bms_electric/views/screens/auth/auth_page.dart';
-import 'package:bms_electric/views/screens/home/home_page.dart';
 import 'package:get/get.dart';
+
+import '../screens/add_reseller/add_reseller_page.dart';
+import '../screens/auth/auth_page.dart';
+import '../screens/edit_reseller/edit_reseller_page.dart';
+import '../screens/home/home_page.dart';
 
 List<GetPage> pages = <GetPage>[
   //auth page
@@ -10,4 +12,6 @@ List<GetPage> pages = <GetPage>[
   GetPage(name: HomePage.id, page: () => HomePage()),
   // add reseller page
   GetPage(name: AddResellerPage.id, page: () => AddResellerPage()),
+  // edit reseller
+  GetPage(name: EditResellerPage.id, page: () => EditResellerPage()),
 ];

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:bms_electric/constants.dart';
+import 'package:bms_electric/helpers/helper.dart';
+import 'package:bms_electric/models/product.dart';
 import 'package:bms_electric/models/reseller.dart';
 import 'package:bms_electric/views/components/reseller_header.dart';
 import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
@@ -26,6 +28,10 @@ class ResellerProfilePage extends StatefulWidget {
 
 class _ResellerProfilePageState extends State<ResellerProfilePage> {
   File _image;
+  List<Product> products;
+  List<Product> bmsProducts;
+  List<Product> nonBmsProducts;
+
   Future getImage(ImageSource imageSource) async {
     // ignore: deprecated_member_use
     final pickedFile = await ImagePicker.pickImage(source: imageSource);
@@ -173,6 +179,14 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
   }
 
   @override
+  void initState() {
+    products.addAll(widget.reseller.products);
+    bmsProducts.addAll(products.where((p) => p.isFromBMS));
+    nonBmsProducts.addAll(products.where((p) => !p.isFromBMS));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
@@ -190,7 +204,7 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                     firstName: widget.reseller.firstName,
                     lastName: widget.reseller.lastName,
                     phone: widget.reseller.phone,
-                    storeName: widget.reseller.activity.toString(),
+                    storeName: getActivityFromInt(widget.reseller.activity),
                   )),
                   Expanded(
                     child: Container(
@@ -261,7 +275,9 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        ListOfProducts(),
+                        ListOfProducts(
+                          products: bmsProducts,
+                        ),
                         SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
@@ -287,7 +303,9 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        ListOfProducts(),
+                        ListOfProducts(
+                          products: nonBmsProducts,
+                        ),
                         SizedBox(
                           height: 20,
                         ),

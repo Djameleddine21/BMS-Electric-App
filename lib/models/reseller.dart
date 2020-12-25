@@ -11,6 +11,7 @@ class Reseller {
   final adress;
   final wilaya;
   final rate;
+  final activity;
   final List<Product> products;
   Reseller({
     this.adress,
@@ -23,5 +24,6 @@ class Reseller {
     this.rate,
     this.wilaya,
     this.products,
+    this.activity,
   });
 }

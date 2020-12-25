@@ -23,7 +23,8 @@ class AuthPage extends StatelessWidget {
               CustomField(
                 textField: TextField(
                   style: TextStyle(color: primaryColor),
-                  decoration: inputDecoration.copyWith(hintText: "Numéro de Téléphone"),
+                  decoration:
+                      inputDecoration.copyWith(hintText: "Numéro de Téléphone"),
                   keyboardType: TextInputType.phone,
                 ),
               ),

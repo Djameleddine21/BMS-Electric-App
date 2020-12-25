@@ -1,5 +1,8 @@
+import 'package:bms_electric/views/routes/routes.dart';
+import 'package:bms_electric/views/screens/auth/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,12 +13,12 @@ void main() async {
 class BMSApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "BMS Electric",
-      home: Scaffold(
-        body: Center(child: Text("Hello")),
-      ),
+      defaultTransition: Transition.cupertino,
+      getPages: pages,
+      initialRoute: AuthPage.id,
     );
   }
 }

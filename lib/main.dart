@@ -1,7 +1,6 @@
 import 'package:bms_electric/constants.dart';
 import 'package:bms_electric/views/routes/routes.dart';
 import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
-import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +30,7 @@ class BMSApp extends StatelessWidget {
       ),
       defaultTransition: Transition.cupertino,
       getPages: pages,
-      initialRoute: EditResellerPage.id,
+      initialRoute: AddResellerPage.id,
     );
   }
 }

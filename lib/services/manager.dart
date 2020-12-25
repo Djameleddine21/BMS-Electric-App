@@ -31,4 +31,10 @@ class Manager {
     );
     print(doc);
   }
+
+  Future getAllResellers() async {
+    QuerySnapshot collection =
+        await FirebaseFirestore.instance.collection("resellers").get();
+    collection.docs.forEach((element) {});
+  }
 }

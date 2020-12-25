@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 class EditResellerPage extends StatelessWidget {
   static const id = "/edit";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,6 +86,11 @@ class EditResellerPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  DropdownButton(items: [
+                    DropdownMenuItem(value: 1, child: Text("Quincaillerie")),
+                    DropdownMenuItem(value: 2, child: Text("Quincaillerie")),
+                    DropdownMenuItem(value: 3, child: Text("Quincaillerie"))
+                  ], onChanged: (value) {}),
                   Column(
                     children: [
                       FittedBox(

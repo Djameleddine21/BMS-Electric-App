@@ -1,3 +1,4 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class LocationService {
@@ -28,5 +29,14 @@ class LocationService {
         return;
       }
     }
+  }
+
+  onMapCreated(GoogleMapController controller) async {
+    LocationData data = await location.getLocation();
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(data.latitude, data.longitude), zoom: 10),
+      ),
+    );
   }
 }

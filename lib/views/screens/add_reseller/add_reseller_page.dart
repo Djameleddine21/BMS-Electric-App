@@ -25,6 +25,7 @@ class _AddResellerPageState extends State<AddResellerPage> {
   var storeName;
 
   var address;
+  var dropDown = 1;
 
   LocationData data = LocationData.fromMap({"latitude": 0.0, "longitude": 0.0});
 
@@ -112,6 +113,26 @@ class _AddResellerPageState extends State<AddResellerPage> {
                       ],
                     ),
                   ),
+                  Container(
+                    padding: EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: greyColor),
+                    child: DropdownButton(
+                        value: dropDown,
+                        items: [
+                          DropdownMenuItem(
+                              value: 1, child: Text("Quincaillerie")),
+                          DropdownMenuItem(
+                              value: 2, child: Text("Eléctricien")),
+                          DropdownMenuItem(value: 3, child: Text("Grossiste"))
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            dropDown = value;
+                          });
+                        }),
+                  ),
                   Column(
                     children: [
                       FittedBox(
@@ -173,8 +194,15 @@ class _AddResellerPageState extends State<AddResellerPage> {
                   CustomButton(
                     text: "Ajouter",
                     onTap: () async {
-                      await Manager.instance.addReseller(name, storeName, phone,
-                          data.longitude, data.latitude, address, wilaya);
+                      await Manager.instance.addReseller(
+                          name,
+                          storeName,
+                          phone,
+                          data.longitude,
+                          data.latitude,
+                          address,
+                          wilaya,
+                          dropDown);
                     },
                   )
                 ],

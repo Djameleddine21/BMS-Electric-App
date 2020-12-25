@@ -1,7 +1,4 @@
-import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 
 import '../../constants.dart';
 

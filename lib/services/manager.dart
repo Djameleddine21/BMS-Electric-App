@@ -6,14 +6,14 @@ class Manager {
   static final instance = Manager._();
 
   Future addReseller(
-    String name,
-    String storeName,
-    String phone,
-    double longitude,
-    double latitude,
-    String address,
-    String wilaya,
-  ) async {
+      String name,
+      String storeName,
+      String phone,
+      double longitude,
+      double latitude,
+      String address,
+      String wilaya,
+      int activity) async {
     DocumentReference doc =
         await FirebaseFirestore.instance.collection("resellers").add(
       {
@@ -25,7 +25,8 @@ class Manager {
         "latitude": latitude,
         "address": address,
         "rate": 0,
-        "evaluation": ""
+        "evaluation": "",
+        "activity": activity,
       },
     );
     print(doc);

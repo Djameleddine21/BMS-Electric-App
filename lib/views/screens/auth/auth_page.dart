@@ -21,6 +21,8 @@ class AuthPage extends StatelessWidget {
               SizedBox(height: Get.height * 0.1),
               //input phone
               CustomField(
+                icon:
+                    Icon(Icons.person_outline, color: Colors.white, size: 30.0),
                 textField: TextField(
                   style: TextStyle(color: primaryColor),
                   decoration:

@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:bms_electric/constants.dart';
+import 'package:bms_electric/views/components/reseller_header.dart';
+import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
+import 'package:bms_electric/views/screens/evaluate_reseller/evaluate_reseller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -168,171 +171,150 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
-        child: Scaffold(
-      body: Container(
-        color: primaryColor,
-        padding: EdgeInsets.only(top: 30, left: 20),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Younes Mimene",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                          overflow: TextOverflow.fade,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "0612345678",
-                          style: TextStyle(color: secondaryColor),
-                          overflow: TextOverflow.fade,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Nom du store",
-                          style: TextStyle(color: secondaryColor, fontSize: 18),
-                          overflow: TextOverflow.fade,
-                        ),
-                      ],
+      child: Scaffold(
+        body: Container(
+          color: primaryColor,
+          padding: EdgeInsets.only(top: 30, left: 20),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: ResellerHeader()),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                Get.to(EditResellerPage());
+                              },
+                              child: Image.asset('assets/icons/edit.png')),
+                          SizedBox(height: 20),
+                          RatingBar.builder(
+                            itemSize: 25,
+                            glow: false,
+                            initialRating: 3,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: null,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        InkWell(
-                            onTap: () {},
-                            child: Image.asset('assets/icons/edit.png')),
-                        SizedBox(height: 20),
-                        RatingBar.builder(
-                          itemSize: 25,
-                          glow: false,
-                          initialRating: 3,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          onRatingUpdate: null,
-                        ),
-                      ],
-                    ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(40.0)),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(40.0)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 20),
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Produits de BMS',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 20),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                _buildAddProduct();
-                              },
-                              child: Text(
-                                '+ Ajouter',
-                                style: TextStyle(
-                                    color: secondaryColor, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      ListOfProducts(),
-                      SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Autre produits',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 20),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                _buildAddProduct();
-                              },
-                              child: Text(
-                                '+ Ajouter',
-                                style: TextStyle(
-                                    color: secondaryColor, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      ListOfProducts(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
-                          width: size.width * 0.6,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30, left: 20),
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset('assets/icons/logo.png'),
-                              SizedBox(width: 5),
                               Text(
-                                'Evaluer',
+                                'Produits de BMS',
                                 style: TextStyle(
-                                    color: secondaryColor, fontSize: 20),
-                              )
+                                    color: primaryColor, fontSize: 20),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _buildAddProduct();
+                                },
+                                child: Text(
+                                  '+ Ajouter',
+                                  style: TextStyle(
+                                      color: secondaryColor, fontSize: 20),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      )
-                    ],
+                        SizedBox(height: 20),
+                        ListOfProducts(),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Autre produits',
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 20),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _buildAddProduct();
+                                },
+                                child: Text(
+                                  '+ Ajouter',
+                                  style: TextStyle(
+                                      color: secondaryColor, fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        ListOfProducts(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(EvaluateReseller());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            width: size.width * 0.6,
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assets/icons/logo.png'),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Evaluer',
+                                  style: TextStyle(
+                                      color: secondaryColor, fontSize: 20),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

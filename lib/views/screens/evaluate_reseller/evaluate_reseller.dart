@@ -2,6 +2,7 @@ import 'package:bms_electric/views/components/reseller_header.dart';
 import 'package:bms_electric/views/screens/reseller_profile/local-widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 

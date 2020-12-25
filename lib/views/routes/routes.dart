@@ -1,6 +1,7 @@
 import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
 import 'package:bms_electric/views/screens/auth/auth_page.dart';
 import 'package:bms_electric/views/screens/confirm_code/confirm_code_page.dart';
+import 'package:bms_electric/views/screens/evaluate_reseller/evaluate_reseller.dart';
 import 'package:bms_electric/views/screens/home/home_page.dart';
 import 'package:bms_electric/views/screens/reseller_profile/reseller_profile_page.dart';
 import 'package:get/get.dart';
@@ -24,5 +25,5 @@ List<GetPage> pages = <GetPage>[
   // Reseller profile
   GetPage(name: ResellerProfilePage.id, page: () => ResellerProfilePage()),
   // Evaluate reseller profile
-  GetPage(name: ResellerProfilePage.id, page: () => ResellerProfilePage()),
+  GetPage(name: EvaluateReseller.id, page: () => EvaluateReseller()),
 ];

@@ -23,4 +23,6 @@ List<GetPage> pages = <GetPage>[
   GetPage(name: EditResellerPage.id, page: () => EditResellerPage()),
   // Reseller profile
   GetPage(name: ResellerProfilePage.id, page: () => ResellerProfilePage()),
+  // Evaluate reseller profile
+  GetPage(name: ResellerProfilePage.id, page: () => ResellerProfilePage()),
 ];

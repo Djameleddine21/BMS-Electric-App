@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../../../../constants.dart';
 
 class SingleProduct extends StatelessWidget {
+  final product;
+  SingleProduct({this.product});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -28,7 +30,8 @@ class SingleProduct extends StatelessWidget {
                 child: Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://dz.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/83/9002/1.jpg?1746',
+                        //'https://dz.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/83/9002/1.jpg?1746',
+                        product.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -36,8 +39,6 @@ class SingleProduct extends StatelessWidget {
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.cover,
-                          colorFilter:
-                              ColorFilter.mode(Colors.red, BlendMode.colorBurn),
                         ),
                       ),
                     ),
@@ -53,7 +54,7 @@ class SingleProduct extends StatelessWidget {
                 child: Container(
                   child: Center(
                       child: Text(
-                    'Product name',
+                    product.name,
                     style: TextStyle(color: secondaryColor),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.fade,

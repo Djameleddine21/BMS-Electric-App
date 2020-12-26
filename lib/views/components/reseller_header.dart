@@ -15,19 +15,19 @@ class ResellerHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "${this.name}",
+            "Djamel",
             style: TextStyle(color: Colors.white, fontSize: 18),
             overflow: TextOverflow.fade,
           ),
           SizedBox(height: 10),
           Text(
-            "0${this.phone}",
+            "0658363772",
             style: TextStyle(color: secondaryColor),
             overflow: TextOverflow.fade,
           ),
           SizedBox(height: 20),
           Text(
-            "${this.storeName}",
+            "Quincaillerie",
             style: TextStyle(color: secondaryColor, fontSize: 18),
             overflow: TextOverflow.fade,
           ),

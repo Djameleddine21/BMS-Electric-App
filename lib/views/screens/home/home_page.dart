@@ -3,7 +3,6 @@ import 'package:bms_electric/services/location.dart';
 import 'package:bms_electric/services/manager.dart';
 import 'package:bms_electric/views/bloc/resellers_cubit.dart';
 import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
-import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:bms_electric/views/screens/reseller_profile/reseller_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,8 +60,7 @@ class _HomePageState extends State<HomePage> {
                                 navigator.pushNamed(ResellerProfilePage.id);
                               },
                               markerId: MarkerId(index.toString()),
-                              position: LatLng(
-                                  data[index].latitude, data[index].longitude),
+                              position: LatLng(data[index].latitude, data[index].longitude),
                               icon: icon),
                         ),
                       ),
@@ -95,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       size: 32,
                     ),
                   ),
-                  keyboardType: TextInputType.phone,
+                  keyboardType: TextInputType.text,
                 ),
               ),
             ),

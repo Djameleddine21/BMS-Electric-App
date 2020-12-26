@@ -10,7 +10,6 @@ class EvaluateReseller extends StatelessWidget {
   static const id = 'evaluateReseller';
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -29,8 +28,7 @@ class EvaluateReseller extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(40.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(40.0)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 30, left: 20),
@@ -60,11 +58,9 @@ class EvaluateReseller extends StatelessWidget {
                         SizedBox(height: 10),
                         Container(
                           margin: EdgeInsets.only(right: 20),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             color: Colors.grey[300],
                           ),
                           child: TextField(

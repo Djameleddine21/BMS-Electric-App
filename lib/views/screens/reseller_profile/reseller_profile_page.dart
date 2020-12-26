@@ -9,10 +9,8 @@ import 'package:bms_electric/views/components/reseller_header.dart';
 import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:bms_electric/views/screens/evaluate_reseller/evaluate_reseller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'local-widgets/List_of_products.dart';
@@ -52,8 +50,7 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                     onTap: _buildBottomSheetForPicture,
                     child: CircleAvatar(
                       backgroundColor: Colors.grey[300],
-                      child: Image.asset('assets/icons/camera.png',
-                          color: primaryColor),
+                      child: Image.asset('assets/icons/camera.png', color: primaryColor),
                       radius: 50,
                     ),
                   )
@@ -217,9 +214,9 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                                 Get.to(EditResellerPage());
                               },
                               child: Image.asset('assets/icons/edit.png')),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           RatingBar.builder(
-                            itemSize: 25,
+                            itemSize: 20,
                             glow: false,
                             initialRating: 3,
                             minRating: 1,
@@ -244,12 +241,12 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(40.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(40.0)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 30, left: 20),
                     child: ListView(
+                      physics: BouncingScrollPhysics(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
@@ -258,8 +255,7 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                             children: [
                               Text(
                                 'Produits de BMS',
-                                style: TextStyle(
-                                    color: primaryColor, fontSize: 20),
+                                style: TextStyle(color: primaryColor, fontSize: 20),
                               ),
                               InkWell(
                                 onTap: () {
@@ -267,8 +263,7 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                                 },
                                 child: Text(
                                   '+ Ajouter',
-                                  style: TextStyle(
-                                      color: secondaryColor, fontSize: 20),
+                                  style: TextStyle(color: secondaryColor, fontSize: 20),
                                 ),
                               ),
                             ],
@@ -286,8 +281,7 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                             children: [
                               Text(
                                 'Autre produits',
-                                style: TextStyle(
-                                    color: primaryColor, fontSize: 20),
+                                style: TextStyle(color: primaryColor, fontSize: 20),
                               ),
                               InkWell(
                                 onTap: () {
@@ -295,20 +289,17 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                                 },
                                 child: Text(
                                   '+ Ajouter',
-                                  style: TextStyle(
-                                      color: secondaryColor, fontSize: 20),
+                                  style: TextStyle(color: secondaryColor, fontSize: 20),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         ListOfProducts(
                           products: nonBmsProducts,
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        const SizedBox(height: 20),
                         InkWell(
                           onTap: () {
                             Get.to(EvaluateReseller());
@@ -318,18 +309,16 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                             width: size.width * 0.6,
                             decoration: BoxDecoration(
                               color: primaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset('assets/icons/logo.png'),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                   'Evaluer',
-                                  style: TextStyle(
-                                      color: secondaryColor, fontSize: 20),
+                                  style: TextStyle(color: secondaryColor, fontSize: 20),
                                 )
                               ],
                             ),

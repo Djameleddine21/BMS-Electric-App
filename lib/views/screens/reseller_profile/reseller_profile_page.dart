@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:bms_electric/constants.dart';
 import 'package:bms_electric/helpers/helper.dart';
 import 'package:bms_electric/models/product.dart';
-import 'package:bms_electric/models/reseller.dart';
+import 'package:bms_electric/models/resseler/reseller.dart';
+import 'package:bms_electric/services/manager.dart';
 import 'package:bms_electric/views/components/reseller_header.dart';
 import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:bms_electric/views/screens/evaluate_reseller/evaluate_reseller.dart';
@@ -19,9 +20,6 @@ import 'local-widgets/custom_button.dart';
 
 class ResellerProfilePage extends StatefulWidget {
   static const id = "reseller_profile";
-
-  final Reseller reseller;
-  ResellerProfilePage({this.reseller});
   @override
   _ResellerProfilePageState createState() => _ResellerProfilePageState();
 }
@@ -29,8 +27,10 @@ class ResellerProfilePage extends StatefulWidget {
 class _ResellerProfilePageState extends State<ResellerProfilePage> {
   File _image;
   List<Product> products;
-  List<Product> bmsProducts;
+  List<Product> bmsProducts = [Product()];
   List<Product> nonBmsProducts;
+
+  Reseller reseller;
 
   Future getImage(ImageSource imageSource) async {
     // ignore: deprecated_member_use
@@ -180,9 +180,10 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
 
   @override
   void initState() {
-    products.addAll(widget.reseller.products);
-    bmsProducts.addAll(products.where((p) => p.isFromBMS));
-    nonBmsProducts.addAll(products.where((p) => !p.isFromBMS));
+    // products.addAll(widget.reseller.products);
+    // bmsProducts.addAll(products.where((p) => p.isFromBMS));
+    // nonBmsProducts.addAll(products.where((p) => !p.isFromBMS));
+    reseller = Manager.instance.selectedReseller;
     super.initState();
   }
 
@@ -201,10 +202,9 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
                 children: [
                   Expanded(
                       child: ResellerHeader(
-                    firstName: widget.reseller.firstName,
-                    lastName: widget.reseller.lastName,
-                    phone: widget.reseller.phone,
-                    storeName: getActivityFromInt(widget.reseller.activity),
+                    name: reseller.name,
+                    phone: reseller.phone,
+                    storeName: getActivityFromInt(reseller.activity),
                   )),
                   Expanded(
                     child: Container(

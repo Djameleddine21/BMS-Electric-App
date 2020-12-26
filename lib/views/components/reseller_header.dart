@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class ResellerHeader extends StatelessWidget {
-  final firstName, lastName, phone, storeName;
+  final name, phone, storeName;
 
-  const ResellerHeader(
-      {this.firstName, this.lastName, this.phone, this.storeName});
+  const ResellerHeader({this.name, this.phone, this.storeName});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +15,13 @@ class ResellerHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "${this.firstName} ${this.lastName}",
+            "${this.name}",
             style: TextStyle(color: Colors.white, fontSize: 18),
             overflow: TextOverflow.fade,
           ),
           SizedBox(height: 10),
           Text(
-            "${this.phone}",
+            "0${this.phone}",
             style: TextStyle(color: secondaryColor),
             overflow: TextOverflow.fade,
           ),

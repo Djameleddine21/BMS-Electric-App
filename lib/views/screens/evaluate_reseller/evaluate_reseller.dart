@@ -1,3 +1,6 @@
+import 'package:bms_electric/helpers/helper.dart';
+import 'package:bms_electric/models/resseler/reseller.dart';
+import 'package:bms_electric/services/manager.dart';
 import 'package:bms_electric/views/components/reseller_header.dart';
 import 'package:bms_electric/views/screens/reseller_profile/local-widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +11,7 @@ import '../../../constants.dart';
 
 class EvaluateReseller extends StatelessWidget {
   static const id = 'evaluateReseller';
+  final Reseller reseller = Manager.instance.selectedReseller;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -21,7 +25,12 @@ class EvaluateReseller extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: ResellerHeader()),
+                  Expanded(
+                      child: ResellerHeader(
+                    name: reseller.name,
+                    phone: reseller.phone,
+                    storeName: getActivityFromInt(reseller.activity),
+                  )),
                 ],
               ),
               SizedBox(height: 20),

@@ -12,8 +12,8 @@ class ListOfProducts extends StatelessWidget {
       height: size.height * 0.23,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemBuilder: (_, i) => SingleProduct(),
-        itemCount: 10,
+        itemBuilder: (_, i) => SingleProduct(product: products[i]),
+        itemCount: products.length,
       ),
     );
   }

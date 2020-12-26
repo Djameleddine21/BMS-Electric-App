@@ -24,8 +24,8 @@ class ResellerProfilePage extends StatefulWidget {
 
 class _ResellerProfilePageState extends State<ResellerProfilePage> {
   File _image;
-  List<Product> products;
-  List<Product> bmsProducts = [Product()];
+
+  List<Product> bmsProducts;
   List<Product> nonBmsProducts;
 
   Reseller reseller;
@@ -177,9 +177,50 @@ class _ResellerProfilePageState extends State<ResellerProfilePage> {
 
   @override
   void initState() {
-    // products.addAll(widget.reseller.products);
-    // bmsProducts.addAll(products.where((p) => p.isFromBMS));
-    // nonBmsProducts.addAll(products.where((p) => !p.isFromBMS));
+    List<Product> products = [
+      Product(
+          name: "Schneider",
+          imageUrl:
+              "https://download.schneider-electric.com/files?p_Doc_Ref=PB112480&p_File_Type=rendition_369_jpg",
+          isFromBMS: true),
+      Product(
+          name: "Fauteuil roulant",
+          imageUrl:
+              "https://img.medicalexpo.fr/images_me/photo-mg/76562-14592039.jpg",
+          isFromBMS: true),
+      Product(
+          name: "Moteur",
+          imageUrl:
+              "https://www.pedrollo.com/public/images/products/PQ.jpg?width=500&height=500&bgcolor=ffffff&scale=both",
+          isFromBMS: true),
+      Product(
+          name: "Prise",
+          imageUrl:
+              "https://zakawatt.dz/wp-content/uploads/2018/05/Prise-simple-Eco-BMS.jpg",
+          isFromBMS: true),
+      Product(
+          name: "Oven",
+          imageUrl:
+              "https://www.sotech-international.com/3963-thickbox_default/electric-oven-26l.jpg",
+          isFromBMS: true),
+      Product(
+          name: "Kettle",
+          imageUrl:
+              "https://pyxis.nymag.com/v1/imgs/6e8/a53/cafdf9c99ab179e3b8a02b8ca3645acf02-electric-kettle-lede.rsquare.w700.jpg",
+          isFromBMS: false),
+      Product(
+          name: "Dualtron",
+          imageUrl:
+              "https://cdn.shopify.com/s/files/1/0018/7616/4681/products/Dualtron_3_Electric_Scooter_Overhead_Profile_1600x.jpg?v=1599746538",
+          isFromBMS: false),
+      Product(
+          name: "vélo",
+          imageUrl:
+              "https://i.pinimg.com/736x/7c/ae/9a/7cae9ab24847e6e13ed1eef219bafa0f.jpg",
+          isFromBMS: false),
+    ];
+    bmsProducts = products.where((p) => p.isFromBMS).toList();
+    nonBmsProducts = products.where((p) => !p.isFromBMS).toList();
     reseller = Manager.instance.selectedReseller;
     super.initState();
   }

@@ -2,6 +2,8 @@ import 'package:bms_electric/models/resseler/reseller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Manager {
+  Reseller selectedReseller;
+
   Manager._();
 
   static final instance = Manager._();

@@ -6,6 +6,7 @@ part 'reseller.g.dart';
 class Reseller {
   String name;
   String address;
+  String id;
   String phone;
   String wilaya;
   String storeName;
@@ -28,7 +29,8 @@ class Reseller {
     this.activity,
   });
 
-  factory Reseller.fromJson(Map<String, dynamic> json) => _$ResellerFromJson(json);
+  factory Reseller.fromJson(Map<String, dynamic> json) =>
+      _$ResellerFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResellerToJson(this);
 }

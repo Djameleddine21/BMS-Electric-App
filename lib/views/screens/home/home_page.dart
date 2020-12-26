@@ -3,6 +3,7 @@ import 'package:bms_electric/services/location.dart';
 import 'package:bms_electric/services/manager.dart';
 import 'package:bms_electric/views/bloc/resellers_cubit.dart';
 import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
+import 'package:bms_electric/views/screens/edit_reseller/edit_reseller_page.dart';
 import 'package:bms_electric/views/screens/reseller_profile/reseller_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

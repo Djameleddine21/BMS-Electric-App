@@ -1,13 +1,21 @@
 import 'package:bms_electric/constants.dart';
+import 'package:bms_electric/services/location.dart';
+import 'package:bms_electric/services/manager.dart';
 import 'package:bms_electric/views/components/clipper/side_wave.dart';
 import 'package:bms_electric/views/components/custom_button.dart';
 import 'package:bms_electric/views/components/custom_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 
-class EditResellerPage extends StatelessWidget {
+class EditResellerPage extends StatefulWidget {
   static const id = "/edit";
 
+  @override
+  _EditResellerPageState createState() => _EditResellerPageState();
+}
+
+class _EditResellerPageState extends State<EditResellerPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,19 +48,24 @@ class EditResellerPage extends StatelessWidget {
                           icon: Icon(Icons.person_outline,
                               color: Colors.white, size: 30.0),
                           textField: TextField(
-                            style: TextStyle(color: primaryColor),
-                            decoration: inputDecoration.copyWith(
-                                hintText: "Nom et prénom"),
-                            keyboardType: TextInputType.phone,
-                          ),
+                              style: TextStyle(color: primaryColor),
+                              decoration: inputDecoration.copyWith(
+                                  hintText:
+                                      Manager.instance.selectedReseller.name),
+                              keyboardType: TextInputType.text,
+                              onChanged: (value) => Manager
+                                  .instance.selectedReseller.name = value),
                         ),
                         CustomField(
                           icon: Image.asset("assets/icons/store.png"),
                           textField: TextField(
                             style: TextStyle(color: primaryColor),
                             decoration: inputDecoration.copyWith(
-                                hintText: "Nom du store"),
-                            keyboardType: TextInputType.phone,
+                                hintText: Manager
+                                    .instance.selectedReseller.storeName),
+                            keyboardType: TextInputType.text,
+                            onChanged: (value) => Manager
+                                .instance.selectedReseller.storeName = value,
                           ),
                         ),
                         CustomField(
@@ -61,44 +74,81 @@ class EditResellerPage extends StatelessWidget {
                           textField: TextField(
                             style: TextStyle(color: primaryColor),
                             decoration: inputDecoration.copyWith(
-                                hintText: "Numéro de téléphone"),
+                                hintText:
+                                    Manager.instance.selectedReseller.phone),
                             keyboardType: TextInputType.phone,
+                            onChanged: (value) =>
+                                Manager.instance.selectedReseller.phone = value,
                           ),
                         ),
                         CustomField(
-                          icon: Image.asset("assets/icons/mail.png"),
+                          icon: Icon(Icons.location_on,
+                              color: Colors.white, size: 30.0),
                           textField: TextField(
                             style: TextStyle(color: primaryColor),
                             decoration: inputDecoration.copyWith(
-                                hintText: "Adresse email"),
-                            keyboardType: TextInputType.phone,
+                                hintText:
+                                    Manager.instance.selectedReseller.wilaya),
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => Manager
+                                .instance.selectedReseller.wilaya = value,
                           ),
                         ),
                         CustomField(
                           icon: Image.asset("assets/icons/home.png"),
                           textField: TextField(
                             style: TextStyle(color: primaryColor),
-                            decoration:
-                                inputDecoration.copyWith(hintText: "Adresse"),
-                            keyboardType: TextInputType.phone,
+                            decoration: inputDecoration.copyWith(
+                                hintText:
+                                    Manager.instance.selectedReseller.address),
+                            keyboardType: TextInputType.text,
+                            onChanged: (value) => Manager
+                                .instance.selectedReseller.address = value,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  DropdownButton(items: [
-                    DropdownMenuItem(value: 1, child: Text("Quincaillerie")),
-                    DropdownMenuItem(value: 2, child: Text("Quincaillerie")),
-                    DropdownMenuItem(value: 3, child: Text("Quincaillerie"))
-                  ], onChanged: (value) {}),
+                  Container(
+                    padding: EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: greyColor),
+                    child: DropdownButton(
+                        value: Manager.instance.selectedReseller.activity,
+                        items: [
+                          DropdownMenuItem(
+                              value: 1, child: Text("Quincaillerie")),
+                          DropdownMenuItem(
+                              value: 2, child: Text("Eléctricien")),
+                          DropdownMenuItem(value: 3, child: Text("Grossiste"))
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            Manager.instance.selectedReseller.activity = value;
+                          });
+                        }),
+                  ),
                   Column(
                     children: [
                       FittedBox(
-                        child: Text(
-                          "Cliquez ici pour avoir l'adresse exacte",
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontSize: 17,
+                        child: InkWell(
+                          onTap: () async {
+                            LocationData data =
+                                await LocationService.instance.getLocation();
+                            setState(() {
+                              Manager.instance.selectedReseller.longitude =
+                                  data.longitude;
+                              Manager.instance.selectedReseller.latitude =
+                                  data.latitude;
+                            });
+                          },
+                          child: Text(
+                            "Cliquez ici pour avoir l'adresse exacte",
+                            style: TextStyle(
+                              color: secondaryColor,
+                              fontSize: 17,
+                            ),
                           ),
                         ),
                       ),
@@ -120,7 +170,8 @@ class EditResellerPage extends StatelessWidget {
                             Text("Lat: "),
                             Expanded(
                               child: Text(
-                                "0.515184184984 ",
+                                Manager.instance.selectedReseller.latitude
+                                    .toString(),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -134,7 +185,8 @@ class EditResellerPage extends StatelessWidget {
                             Text(" Lng: "),
                             Expanded(
                               child: Text(
-                                "0.515184184984",
+                                Manager.instance.selectedReseller.longitude
+                                    .toString(),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             )
@@ -143,7 +195,20 @@ class EditResellerPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  CustomButton(text: "Modifier", onTap: null)
+                  CustomButton(
+                    text: "Modifier",
+                    onTap: () async {
+                      await Manager.instance.editProfile(
+                          Manager.instance.selectedReseller.name,
+                          Manager.instance.selectedReseller.storeName,
+                          Manager.instance.selectedReseller.phone,
+                          Manager.instance.selectedReseller.longitude,
+                          Manager.instance.selectedReseller.latitude,
+                          Manager.instance.selectedReseller.address,
+                          Manager.instance.selectedReseller.wilaya,
+                          Manager.instance.selectedReseller.activity);
+                    },
+                  )
                 ],
               ),
             ),

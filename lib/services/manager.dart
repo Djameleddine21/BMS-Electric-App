@@ -1,6 +1,9 @@
+import 'package:bms_electric/models/resseler/reseller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Manager {
+  Reseller selectedReseller;
+
   Manager._();
 
   static final instance = Manager._();
@@ -33,8 +36,12 @@ class Manager {
   }
 
   Future getAllResellers() async {
+    List<Reseller> list = [];
     QuerySnapshot collection =
         await FirebaseFirestore.instance.collection("resellers").get();
-    collection.docs.forEach((element) {});
+    collection.docs.forEach((element) {
+      list.add(Reseller.fromJson(element.data()));
+    });
+    return list;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bms_electric/constants.dart';
 import 'package:bms_electric/views/components/bms_header.dart';
 import 'package:bms_electric/views/components/custom_button.dart';
+import 'package:bms_electric/views/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -42,7 +43,10 @@ class ConfirmCodePage extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.15),
               //login button
-              CustomButton(text: "Confirmer", onTap: () {}),
+              CustomButton(
+                text: "Confirmer",
+                onTap: () => navigator.pushNamed(HomePage.id),
+              ),
               const SizedBox(height: 20.0),
             ],
           ),

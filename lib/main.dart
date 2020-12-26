@@ -1,7 +1,7 @@
 import 'package:bms_electric/constants.dart';
 import 'package:bms_electric/views/routes/routes.dart';
+import 'package:bms_electric/views/screens/auth/auth_page.dart';
 
-import 'package:bms_electric/views/screens/add_reseller/add_reseller_page.dart';
 import 'package:bms_electric/views/screens/home/home_page.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -23,8 +23,7 @@ class BMSApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
         buttonColor: primaryColor,
-        textTheme:
-            TextTheme(bodyText2: TextStyle(color: primaryColor, fontSize: 18)),
+        textTheme: TextTheme(bodyText2: TextStyle(color: primaryColor, fontSize: 18)),
         appBarTheme: AppBarTheme(centerTitle: true, color: primaryColor),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: primaryColor,
@@ -33,7 +32,7 @@ class BMSApp extends StatelessWidget {
       ),
       defaultTransition: Transition.cupertino,
       getPages: pages,
-      initialRoute: HomePage.id,
+      initialRoute: AuthPage.id,
     );
   }
 }
